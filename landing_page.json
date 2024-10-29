@@ -1,0 +1,116 @@
+{
+    "name": "Flintstone Holiday Planner",
+    "logo": {
+        "Type": "Logo",
+        "name": "Flintstone Logo",
+        "description": "A cartoony emblem featuring Stone Age icons and lettering reminiscent of the classic Flintstones TV show."
+    },
+    "sections": [
+        {
+            "title": "Welcome to the Stone Age Adventure!",
+            "subtitle": "Your Dream Holiday, the Flintstones Way",
+            "name": "header",
+            "label": "Home",
+            "content": "Experience a wild and fun-filled vacation like never before, where the Stone Age charm meets modern comforts. Join us at Flintstone Holiday Planner for an unforgettable adventure that will transport you back in time - where dinosaurs roam and the footmobile is your ride!",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "Stone Age Adventure",
+                    "description": "A beautiful stone-age landscape with quaint stone-carved cottages and dinosaurs grazing."
+                }
+            ]
+        },
+        {
+            "title": "About Us",
+            "subtitle": "The Story Behind Flintstone Holiday Planner",
+            "name": "about",
+            "label": "About",
+            "content": "At Flintstone Holiday Planner, we are passionate about bringing the iconic world of the Flintstones to life. Founded in Bedrock City, we design unique themed holidays packed with nostalgia and imagination. Our mission is to deliver a seamless blend of prehistoric aesthetics and current-day luxury, giving you the best of both worlds.",
+            "order": 2,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Background",
+                    "name": "About Background",
+                    "description": "A collage of Flintstone characters and scenes that embody the thrill of the Stone Age."
+                }
+            ]
+        },
+        {
+            "title": "Our Services",
+            "subtitle": "Tailored Flintstone Experiences",
+            "name": "services",
+            "label": "Services",
+            "content": "- **Flintstone Footmobile Tours:** Cruise through our prehistoric park with our unique foot-powered vehicles.\n- **Caveman Culinary Classes:** Master the art of Stone Age cooking with our chefs.\n- **Dino Adventure Trails:** Explore our dinosaur-friendly hikes and afternoon sippings on Dino Juice!\n- **Stone Carving Workshops:** Unleash your inner artisan with hands-on stone masonry sessions.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "ItemListing",
+                    "name": "Footmobile",
+                    "description": "A foot-powered mobile for prehistoric tours."
+                },
+                {
+                    "Type": "ItemListing",
+                    "name": "Dino Trail",
+                    "description": "A scenic trail featuring real-size dinosaur replicas."
+                }
+            ]
+        },
+        {
+            "title": "Meet the Flintstone Team",
+            "subtitle": "Your Stone Age Hosts",
+            "name": "team",
+            "label": "Team",
+            "content": "Say 'Yabba Dabba Doo!' to our friendly crew:\n- Fred Flintstone: Chief Stone Age Dreamer\n- Wilma Flintstone: Wellness and Cave Spa Guru\n- Barney Rubble: Tour Guide Extraordinaire\n- Betty Rubble: Dino Trainer and Adventure Guide",
+            "order": 4,
+            "Type": "Team",
+            "images": [
+                {
+                    "Type": "Headshot",
+                    "name": "Fred Flintstone",
+                    "description": "A cheerful image of Fred Flintstone in his signature spotted outfit."
+                },
+                {
+                    "Type": "Headshot",
+                    "name": "Wilma Flintstone",
+                    "description": "Wilma smiling and dressed in regal Stone Age attire."
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "subtitle": "",
+            "name": "contact",
+            "label": "Contact",
+            "content": "Whether you have questions, need help planning your trip, or want to book one of our themed packages, we're here to help!\n\n**Email:** contact@flintstoneholidays.com\n**Phone:** +1 (555) 019-6840\n**Address:** 123 Rock Road, Bedrock City, Stone Age",
+            "order": 5,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Location Map",
+                    "description": "Map pinpointing the location of Bedrock City."
+                }
+            ]
+        },
+        {
+            "title": "Testimonials",
+            "subtitle": "What Our Guests Are Saying",
+            "name": "testimonials",
+            "label": "Testimonials",
+            "content": "- \"Our Flintstone holiday was a magical experience, filled with vintage charm and endless fun. Absolutely loved it!\" - **Pebbles Anderson**\n- \"The footmobile tours were a hoot! My kids had the time of their lives.\" - **Bam-Bam Clobber**",
+            "order": 6,
+            "Type": "Testimonials",
+            "images": [
+                {
+                    "Type": "Testimonial",
+                    "name": "Happy Family",
+                    "description": "A joyful family posing beside a giant stone tower."
+                }
+            ]
+        }
+    ]
+}

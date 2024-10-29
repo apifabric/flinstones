@@ -1,0 +1,392 @@
+about:
+  date: October 29, 2024 11:12:48
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 15
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Accommodation:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: location_id
+      required: true
+    - name: price_per_night
+      required: true
+    - name: id
+    description: Accommodation options available at different locations.
+    info_list: Accommodation options available at different locations.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - accommodation_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - accommodation_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Accommodation
+    user_key: name
+  Activity:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: location_id
+      required: true
+    - name: cost
+    - name: id
+    description: Activities available during the holiday.
+    info_list: Activities available during the holiday.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - activity_id
+      name: ActivityBookingList
+      resource: ActivityBooking
+    - direction: tomany
+      fks:
+      - activity_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Activity
+    user_key: name
+  ActivityBooking:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: activity_id
+      required: true
+    - name: family_member_id
+      required: true
+    - name: booking_date
+      required: true
+      type: DATETIME
+    description: Activity booking details for family members.
+    info_list: Activity booking details for family members.
+    tab_groups:
+    - direction: toone
+      fks:
+      - activity_id
+      name: activity
+      resource: Activity
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: ActivityBooking
+    user_key: id
+  Attendee:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: event_id
+      required: true
+    - name: family_member_id
+      required: true
+    description: Tracks attendees for each event.
+    info_list: Tracks attendees for each event.
+    tab_groups:
+    - direction: toone
+      fks:
+      - event_id
+      name: event
+      resource: Event
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: Attendee
+    user_key: id
+  Booking:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: accommodation_id
+      required: true
+    - name: family_id
+      required: true
+    - name: check_in_date
+      required: true
+      type: DATETIME
+    - name: check_out_date
+      required: true
+      type: DATETIME
+    description: Records of house bookings by families.
+    info_list: Records of house bookings by families.
+    tab_groups:
+    - direction: toone
+      fks:
+      - accommodation_id
+      name: accommodation
+      resource: Accommodation
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    type: Booking
+    user_key: id
+  Event:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: location_id
+      required: true
+    - name: event_date
+      required: true
+      type: DATETIME
+    - name: id
+    description: Special events planned during the holiday.
+    info_list: Special events planned during the holiday.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - event_id
+      name: AttendeeList
+      resource: Attendee
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Event
+    user_key: name
+  Family:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: motto
+    - name: id
+    description: Stores details about different families planning holidays.
+    info_list: Stores details about different families planning holidays.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - family_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - family_id
+      name: FamilyMemberList
+      resource: FamilyMember
+    - direction: tomany
+      fks:
+      - family_id
+      name: PackageBookingList
+      resource: PackageBooking
+    type: Family
+    user_key: name
+  FamilyMember:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: family_id
+      required: true
+    - name: age
+    - name: id
+    description: Represents members of each family.
+    info_list: Represents members of each family.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: ActivityBookingList
+      resource: ActivityBooking
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: AttendeeList
+      resource: Attendee
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    type: FamilyMember
+    user_key: name
+  Location:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: description
+    - name: id
+    description: Details about the holiday locations.
+    info_list: Details about the holiday locations.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - location_id
+      name: AccommodationList
+      resource: Accommodation
+    - direction: tomany
+      fks:
+      - location_id
+      name: ActivityList
+      resource: Activity
+    - direction: tomany
+      fks:
+      - location_id
+      name: EventList
+      resource: Event
+    type: Location
+    user_key: name
+  Package:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: description
+    - name: price
+      required: true
+    - name: id
+    description: Holiday package deals offered to families.
+    info_list: Holiday package deals offered to families.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - package_id
+      name: PackageBookingList
+      resource: PackageBooking
+    type: Package
+    user_key: name
+  PackageBooking:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: family_id
+      required: true
+    - name: package_id
+      required: true
+    - name: booking_date
+      required: true
+      type: DATETIME
+    description: Records of package deal bookings by families.
+    info_list: Records of package deal bookings by families.
+    tab_groups:
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    - direction: toone
+      fks:
+      - package_id
+      name: package
+      resource: Package
+    type: PackageBooking
+    user_key: id
+  Review:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: accommodation_id
+    - name: activity_id
+    - name: family_member_id
+      required: true
+    - name: comments
+    - name: rating
+    description: Reviews left by families and members on activities or accommodations.
+    info_list: Reviews left by families and members on activities or accommodations.
+    tab_groups:
+    - direction: toone
+      fks:
+      - accommodation_id
+      name: accommodation
+      resource: Accommodation
+    - direction: toone
+      fks:
+      - activity_id
+      name: activity
+      resource: Activity
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: Review
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

@@ -1,0 +1,568 @@
+about:
+  date: October 29, 2024 11:12:48
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+entities:
+  Accommodation:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: location_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: price_per_night
+      required: true
+      template: real
+      type: FLOAT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Accommodation options available at different locations.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Accommodation options available at different locations.
+    label: Accommodation
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - accommodation_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - accommodation_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Accommodation
+  Activity:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: location_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: cost
+      template: real
+      type: FLOAT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Activities available during the holiday.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Activities available during the holiday.
+    label: Activity
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - activity_id
+      name: ActivityBookingList
+      resource: ActivityBooking
+    - direction: tomany
+      fks:
+      - activity_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Activity
+  ActivityBooking:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: activity_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: family_member_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: booking_date
+      required: true
+      type: DATETIME
+    description: Activity booking details for family members.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Activity booking details for family members.
+    label: ActivityBooking
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - activity_id
+      name: activity
+      resource: Activity
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: ActivityBooking
+  Attendee:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: event_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: family_member_id
+      required: true
+      template: integer
+      type: INTEGER
+    description: Tracks attendees for each event.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Tracks attendees for each event.
+    label: Attendee
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - event_id
+      name: event
+      resource: Event
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: Attendee
+  Booking:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: accommodation_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: family_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: check_in_date
+      required: true
+      type: DATETIME
+    - name: check_out_date
+      required: true
+      type: DATETIME
+    description: Records of house bookings by families.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Records of house bookings by families.
+    label: Booking
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - accommodation_id
+      name: accommodation
+      resource: Accommodation
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    type: Booking
+  Event:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: location_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: event_date
+      required: true
+      type: DATETIME
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Special events planned during the holiday.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Special events planned during the holiday.
+    label: Event
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - event_id
+      name: AttendeeList
+      resource: Attendee
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: Location
+    type: Event
+  Family:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: motto
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Stores details about different families planning holidays.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Stores details about different families planning holidays.
+    label: Family
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - family_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - family_id
+      name: FamilyMemberList
+      resource: FamilyMember
+    - direction: tomany
+      fks:
+      - family_id
+      name: PackageBookingList
+      resource: PackageBooking
+    type: Family
+  FamilyMember:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: family_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: age
+      template: integer
+      type: INTEGER
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Represents members of each family.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Represents members of each family.
+    label: FamilyMember
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: ActivityBookingList
+      resource: ActivityBooking
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: AttendeeList
+      resource: Attendee
+    - direction: tomany
+      fks:
+      - family_member_id
+      name: ReviewList
+      resource: Review
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    type: FamilyMember
+  Location:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: description
+      template: text
+      type: TEXT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Details about the holiday locations.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Details about the holiday locations.
+    label: Location
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - location_id
+      name: AccommodationList
+      resource: Accommodation
+    - direction: tomany
+      fks:
+      - location_id
+      name: ActivityList
+      resource: Activity
+    - direction: tomany
+      fks:
+      - location_id
+      name: EventList
+      resource: Event
+    type: Location
+  Package:
+    columns:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: description
+      template: text
+      type: TEXT
+    - name: price
+      required: true
+      template: real
+      type: FLOAT
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Holiday package deals offered to families.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    home_template: home_template.html
+    info_list: Holiday package deals offered to families.
+    label: Package
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - package_id
+      name: PackageBookingList
+      resource: PackageBooking
+    type: Package
+  PackageBooking:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: family_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: package_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: booking_date
+      required: true
+      type: DATETIME
+    description: Records of package deal bookings by families.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Records of package deal bookings by families.
+    label: PackageBooking
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - family_id
+      name: family
+      resource: Family
+    - direction: toone
+      fks:
+      - package_id
+      name: package
+      resource: Package
+    type: PackageBooking
+  Review:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: accommodation_id
+      template: integer
+      type: INTEGER
+    - name: activity_id
+      template: integer
+      type: INTEGER
+    - name: family_member_id
+      required: true
+      template: integer
+      type: INTEGER
+    - name: comments
+      template: text
+      type: TEXT
+    - name: rating
+      template: real
+      type: FLOAT
+    description: Reviews left by families and members on activities or accommodations.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    home_template: home_template.html
+    info_list: Reviews left by families and members on activities or accommodations.
+    label: Review
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - accommodation_id
+      name: accommodation
+      resource: Accommodation
+    - direction: toone
+      fks:
+      - activity_id
+      name: activity
+      resource: Activity
+    - direction: toone
+      fks:
+      - family_member_id
+      name: family_member
+      resource: FamilyMember
+    type: Review
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: false
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    mode: tab
+    pick_style: list
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: false

@@ -1,0 +1,123 @@
+// Copy this text, paste to https://dbdiagram.io/d
+// Or, https://databasediagram.com/app
+// Or, view in VSCode with extension: "DBML Live Preview"
+
+Project DBML {
+  Note: '''
+Accommodation: Accommodation options available at different locations.
+Location: Details about the holiday locations.
+Activity: Activities available during the holiday.
+ActivityBooking: Activity booking details for family members.
+FamilyMember: Represents members of each family.
+Attendee: Tracks attendees for each event.
+Event: Special events planned during the holiday.
+Booking: Records of house bookings by families.
+Family: Stores details about different families planning holidays.
+Package: Holiday package deals offered to families.
+PackageBooking: Records of package deal bookings by families.
+Review: Reviews left by families and members on activities or accommodations.
+'''
+}
+
+Table Accommodation {
+    id INTEGER [primary key]
+    name VARCHAR 
+    location_id INTEGER 
+    price_per_night FLOAT 
+    }
+
+Table Location {
+    id INTEGER [primary key]
+    name VARCHAR 
+    description TEXT 
+    }
+
+Table Activity {
+    id INTEGER [primary key]
+    name VARCHAR 
+    location_id INTEGER 
+    cost FLOAT 
+    }
+
+Table ActivityBooking {
+    id INTEGER [primary key]
+    family_member_id INTEGER 
+    activity_id INTEGER 
+    booking_date DATETIME 
+    }
+
+Table FamilyMember {
+    id INTEGER [primary key]
+    name VARCHAR 
+    age INTEGER 
+    family_id INTEGER 
+    }
+
+Table Attendee {
+    id INTEGER [primary key]
+    event_id INTEGER 
+    family_member_id INTEGER 
+    }
+
+Table Event {
+    id INTEGER [primary key]
+    name VARCHAR 
+    location_id INTEGER 
+    event_date DATETIME 
+    }
+
+Table Booking {
+    id INTEGER [primary key]
+    family_id INTEGER 
+    accommodation_id INTEGER 
+    check_in_date DATETIME 
+    check_out_date DATETIME 
+    }
+
+Table Family {
+    id INTEGER [primary key]
+    name VARCHAR 
+    motto VARCHAR 
+    }
+
+Table Package {
+    id INTEGER [primary key]
+    name VARCHAR 
+    description TEXT 
+    price FLOAT 
+    }
+
+Table PackageBooking {
+    id INTEGER [primary key]
+    package_id INTEGER 
+    family_id INTEGER 
+    booking_date DATETIME 
+    }
+
+Table Review {
+    id INTEGER [primary key]
+    family_member_id INTEGER 
+    accommodation_id INTEGER 
+    activity_id INTEGER 
+    comments TEXT 
+    rating FLOAT 
+    }
+
+
+
+// Relationships
+    Ref: Accommodation.(location_id) < Location.(id)
+    Ref: Activity.(location_id) < Location.(id)
+    Ref: ActivityBooking.(activity_id) < Activity.(id)
+    Ref: ActivityBooking.(family_member_id) < FamilyMember.(id)
+    Ref: FamilyMember.(family_id) < Family.(id)
+    Ref: Attendee.(event_id) < Event.(id)
+    Ref: Attendee.(family_member_id) < FamilyMember.(id)
+    Ref: Event.(location_id) < Location.(id)
+    Ref: Booking.(accommodation_id) < Accommodation.(id)
+    Ref: Booking.(family_id) < Family.(id)
+    Ref: PackageBooking.(family_id) < Family.(id)
+    Ref: PackageBooking.(package_id) < Package.(id)
+    Ref: Review.(accommodation_id) < Accommodation.(id)
+    Ref: Review.(activity_id) < Activity.(id)
+    Ref: Review.(family_member_id) < FamilyMember.(id)
